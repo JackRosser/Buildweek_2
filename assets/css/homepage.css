@@ -44,3 +44,7 @@
 ::-webkit-scrollbar-thumb:hover {
   background-color: #555;
 }
+
+.rightbar {
+  max-height: 100vh;
+}
