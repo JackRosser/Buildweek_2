@@ -1,0 +1,17 @@
+.navmenu {
+  height: 20vh;
+}
+
+.navcontent {
+  height: 20vh;
+}
+
+@media screen and (min-height: 992px) {
+  .navmenu {
+    height: 40vh;
+  }
+
+  .navcontent {
+    flex-grow
+  }
+}
