@@ -1,0 +1,8 @@
+.bgmain {
+  background-color: #c2a745;
+}
+
+.containerPlay {
+  background-color: rgb(0, 0, 0, 0.5);
+  backdrop-filter: blur(5rem);
+}

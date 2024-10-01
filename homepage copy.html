@@ -25,6 +25,7 @@
 
     <link rel="stylesheet" href="./assets/css/homepage.css" />
     <link rel="stylesheet" href="./assets/css/mainmusic.css" />
+    <link rel="stylesheet" href="./assets/css/album.css" />
 
     <title>Spotify Home</title>
   </head>
@@ -119,135 +120,68 @@
               </div>
             </div>
           </div>
-
+          <!-- inizio pagiona da cambiare  -->
           <div
-            class="mainbox col col-12 col-lg-6 bg-dark text-white overflow-auto Gianmarco"
+            class="mainbox col col-12 col-lg-6 text-white overflow-auto p-0 Gianmarco"
           >
-            <div class="mainmusic row py-3 m-0">
-              <div id="mainmusicbox" class="col col-12 d-flex gap-4">
-                <!-- Qui saranno inserite e informazioni derivate da mainmenu.js -->
+            <div class="bgmain h-50 position-relative z-0">
+              <div class="col pt-3 d-flex gap-2 justify-content-between">
+                <div class="d-flex gap-2">
+                  <i class="bi bi-arrow-left-circle-fill opacity-75"></i>
+                  <i class="bi bi-arrow-right-circle-fill opacity-75"></i>
+                </div>
+
+                <a
+                  class="nav-link dropdown-toggle bg-black rounded-4 opacity-75 p-1"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Gianmarco Arzanese
+                </a>
+                <ul class="dropdown-menu opacity-50">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </li>
+                </ul>
               </div>
-            </div>
-            <div class="container-fluid">
-              <h4>Buonasera</h4>
-              <div class="row d-flex">
-                <!-- CARD 1 -->
-                <div class="col-4 p-1 shadow-lg">
-                  <div class="d-flex flex-row rounded-1 align-items-center">
-                    <div class="col col-12 col-md-6 d-flex flex-column">
-                      <div class="d-flex flex-row" id="imgalbum1">
-                        <img
-                          src="./assets/imgs/search/image-1.jpeg"
-                          alt="logo"
-                          class="gianmarcoimg"
-                        />
-                        <img
-                          src="./assets/imgs/search/image-10.jpg"
-                          alt="logo"
-                          class="gianmarcoimg"
-                        />
-                      </div>
-                      <div class="d-flex flex-row" id="imgalbum2">
-                        <img
-                          src="./assets/imgs/search/image-11.jpg"
-                          alt="logo"
-                          class="gianmarcoimg"
-                        />
-                        <img
-                          src="./assets/imgs/search/image-12.jpg"
-                          alt="logo"
-                          class="gianmarcoimg"
-                        />
-                      </div>
-                    </div>
-                    <div class="col col-12 col-md-6">
-                      <p class="m-0 fw-medium text-truncate" id="titloalbum">
-                        erly stage emily syndrome <br />
-                        (sett-ott 2022)
-                      </p>
-                    </div>
+              <div class="row py-3">
+                <div class="col col-lg-3 shadow-lg p-0 ps-1">
+                  <img
+                    src="./assets/imgs/search/image-37.jpeg"
+                    alt="album"
+                    style="width: 100%"
+                  />
+                </div>
+                <div class="col col-lg-9">
+                  <p>ALBUM</p>
+                  <h3 class="fw-bold">Gioventu' brucata</h3>
+                  <div class="col d-flex flex-row gap-1">
+                    <img
+                      src="./assets/imgs/search/image-35.jpg"
+                      alt="logo"
+                      class="rounded-circle"
+                      style="width: 2rem"
+                    />
+                    <p class="fw-bolder m-0">pinguini tattici nucleari</p>
+                    <p class="m-0">2017</p>
+                    <p class="m-0">12 brani</p>
+                    <p class="opacity-75 m-0">53 min 20 sec</p>
                   </div>
                 </div>
               </div>
-            </div>
-
-            <div class="container-fluid mt-2">
-              <div class="row">
-                <div class="col col-9"><h4>Altro di ciò che ti piace</h4></div>
-                <div class="col col-3">
-                  <a class="nav-link font-monospace text-white-50" href="#"
-                    >VISUALIZZA TUTTO</a
-                  >
-                </div>
-              </div>
-            </div>
-            <div class="container-fluid">
               <div
-                class="row row-cols-1 row-cols-md-3 row-cols-lg-6 d-flex gap-4 justify-content-between"
+                class="row position-absolute containerPlay p-3 m-0 w-100 h-100"
               >
-                <div class="col p-1">
-                  <div class="card bg-dark text-white-50 shadow-lg h-100">
-                    <div class="p-2">
-                      <img
-                        src="./assets/imgs/main/image-18.jpg"
-                        class="card-img-top"
-                        alt="estate 2022"
-                      />
-                      <div class="card-body">
-                        <h5 class="card-title text-white text-truncate">
-                          estate 2022
-                        </h5>
-                        <p class="card-text text-truncate">
-                          Some quick example text to build on the card title and
-                          make up the bulk of the card's content.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col p-1">
-                  <div class="card bg-dark text-white-50 shadow-lg h-100">
-                    <div class="p-2">
-                      <img
-                        src="./assets/imgs/search/image-5.jpg"
-                        class="card-img-top"
-                        alt="Viva latino"
-                      />
-                      <div class="card-body">
-                        <h5 class="card-title text-white text-truncate">
-                          Viva latino
-                        </h5>
-                        <p class="card-text text-truncate">
-                          Some quick example text to build on the card title and
-                          make up the bulk of the card's content.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col p-1">
-                  <div class="card bg-dark text-white-50 shadow-lg h-100">
-                    <div class="p-2">
-                      <img
-                        src="./assets/imgs/search/image-11.jpg"
-                        class="card-img-top"
-                        alt="Songs To Sing In The Car"
-                      />
-                      <div class="card-body">
-                        <h5 class="card-title text-white text-truncate">
-                          Songs To Sing In The Car
-                        </h5>
-                        <p class="card-text text-truncate">
-                          Some quick example text to build on the .
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <div class="col"></div>
+                <div class="col"></div>
               </div>
             </div>
+            <!-- fine pagina da cambiare  -->
           </div>
-
           <div class="rightbar col col-lg-3 d-none d-lg-block overflow-auto">
             <div class="container mt-3 friend-activity">
               <div class="bg-black border-0">
