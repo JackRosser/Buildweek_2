@@ -57,6 +57,7 @@
 }
 .friend-activity {
   font-size: 0.75rem;
+  font-weight: 700;
 }
 .friend-activity img {
   width: 45px;
@@ -66,10 +67,12 @@
   padding: 0.5rem 1rem;
 }
 .friend-activity .list-group-item {
-  padding: 0.5rem 0.75rem;
+  padding: 0.6rem 0.7rem;
 }
 .friend-activity small {
   font-size: 0.7rem;
+  line-height: 1.3rem;
+  font-weight: 300;
 }
 /* Margini aggiustati per l'icona EP e musica */
 .icon-text {
@@ -77,5 +80,4 @@
 }
 .list-group-item {
   border: none;
-
 }
