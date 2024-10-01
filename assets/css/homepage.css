@@ -63,3 +63,9 @@
   border-radius: 5px;
   margin-top: 5px;
 }
+.text-truncate {
+  white-space: nowrap; /* Impedisce al testo di andare su più righe */
+  overflow: hidden; /* Nasconde il testo che va oltre il limite */
+  text-overflow: ellipsis; /* Aggiunge i puntini di sospensione */
+  max-width: 200px; /* Imposta la larghezza massima del contenitore */
+}
