@@ -74,3 +74,42 @@
   justify-content: center;
   gap: 1em;
 }
+.gianmarcoimg {
+  width: 2rem;
+}
+.card-img-top {
+  border-radius: 5px;
+  margin-top: 5px;
+}
+.text-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+.friend-activity {
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+.friend-activity img {
+  width: 45px;
+  height: 45px;
+}
+.friend-activity .card-header {
+  padding: 0.5rem 1rem;
+}
+.friend-activity .list-group-item {
+  padding: 0.6rem 0.7rem;
+}
+.friend-activity small {
+  font-size: 0.7rem;
+  line-height: 1.3rem;
+  font-weight: 300;
+}
+/* Margini aggiustati per l'icona EP e musica */
+.icon-text {
+  margin-left: 5px;
+}
+.list-group-item {
+  border: none;
+}
