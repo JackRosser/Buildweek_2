@@ -55,3 +55,27 @@
 .rightbar {
   max-height: 100vh;
 }
+.friend-activity {
+  font-size: 0.75rem;
+}
+.friend-activity img {
+  width: 45px;
+  height: 45px;
+}
+.friend-activity .card-header {
+  padding: 0.5rem 1rem;
+}
+.friend-activity .list-group-item {
+  padding: 0.5rem 0.75rem;
+}
+.friend-activity small {
+  font-size: 0.7rem;
+}
+/* Margini aggiustati per l'icona EP e musica */
+.icon-text {
+  margin-left: 5px;
+}
+.list-group-item {
+  border: none;
+
+}
