@@ -55,3 +55,7 @@
 .rightbar {
   max-height: 100vh;
 }
+.card-img-top {
+  border-radius: 5px;
+  margin-top: 5px;
+}
