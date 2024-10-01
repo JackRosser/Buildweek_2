@@ -116,31 +116,37 @@
         </div>
       </div>
     </main>
-    <footer>
-      <div class="container mt-5"></div>
-      <div class="row align-items-center">
-        <div class="col text-start">
-          <button id="heart" class="btn text-light fs-3"><i class="bi bi-heart"></i></button>
-          <img class="" src="./assets/imgs/main/image-12.jpg"">
+    <footer class="bg-dark">
+      <div class="container-fluid mt-5">
+        <div class="row align-items-center justify-content-between">
+          <div class="col d-flex flex-row align-items-center gap-3">
+            <img class="imgfooter" src="./assets/imgs/main/image-12.jpg" />
+            <div class="d-flex flex-column">
+              <p class="text-white m-0">Fat Funny Friend</p>
+              <p class="text-white m-0">djdjdjdjjd</p>
+            </div>
+
+            <button id="heart" class="btn text-light fs-3"><i class="bi bi-heart"></i></button>
+          </div>
+          <div class="col d-flex justify-content-center">
+            <button id="shuffle" class="btn text-light fs-3"><i class="bi bi-shuffle"></i></button>
+            <button id="play" class="btn text-light fs-3"><i class="bi bi-caret-left-fill"></i></button>
+            <button id="next" class="btn text-light fs-3"><i class="bi bi-play-circle-fill"></i></button>
+            <button id="nextr" class="btn text-light fs-3"><i class="bi bi-caret-right-fill"></i></button>
+            <button id="repeat" class="btn text-light fs-3"><i class="bi bi-repeat"></i></button>
+          </div>
+          <div class="col d-flex justify-content-end">
+            <button id="mic" class="btn text-light fs-6 me-1 p-1"><i class="bi bi-mic-fill"></i></button>
+            <button id="list" class="btn text-light fs-6 me-1 p-1"><i class="bi bi-list"></i></button>
+            <button id="non so" class="btn text-light fs-6 me-1 p-1"><i class="bi bi-cassette"></i></button>
+            <button id="volume-down" class="btn text-light fs-6 me-1 p-1"><i class="bi bi-volume-down"></i></button>
+            <input type="range" id="volume" class="form-control-range d-inline-block mx-1" min="0" max="100" value="50" style="width: 150px" />
+            <button id="arrow" class="btn text-light p-0"><i class="bi bi-arrows-angle-expand"></i></button>
+          </div>
         </div>
-        <div class="col text-center">
-          <button id="shuffle" class="btn text-light fs-3"><i class="bi bi-shuffle"></i></button>
-          <button id="play" class="btn text-light fs-3"><i class="bi bi-caret-left-fill"></i></button>
-          <button id="next" class="btn text-light fs-3"><i class="bi bi-play-circle-fill"></i></button>
-          <button id="nextr" class="btn text-light fs-3"><i class="bi bi-caret-right-fill"></i></button>
-          <button id="repeat" class="btn text-light fs-3"><i class="bi bi-repeat"></i></button>
+        <div class="progress mb-3">
+          <div id="progress-bar" class="progress-bar bg-white"></div>
         </div>
-        <div class="col text-end">
-          <button id="mic" class="btn text-light fs-5"><i class="bi bi-mic-fill"></i></button>
-          <button id="list" class="btn text-light fs-3"><i class="bi bi-list"></i></button>
-          <button id="non so" class="btn text-light fs-3"><i class=""></i> non so</button>
-          <button id="volume-down" class="btn text-light fs-3"><i class="bi bi-volume-down"></i></button>
-          <input type="range" id="volume" class="form-control-range d-inline-block mx-2" min="0" max="100" value="50" />
-          <button id="expand" class="btn text-light"><i class="bi bi-arrows-angle-expand"></i></button>
-        </div>
-      </div>
-      <div class="progress mb-3">
-        <div id="progress-bar" class="progress-bar bg-white"></div>
       </div>
     </footer>
     <script></script>
