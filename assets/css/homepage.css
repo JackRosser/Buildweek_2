@@ -59,3 +59,7 @@
 .gianmarcoimg {
   width: 2rem;
 }
+.card-img-top {
+  border-radius: 5px;
+  margin-top: 5px;
+}
