@@ -176,6 +176,7 @@ if (albumId) {
       let container = document.createElement("div");
       container.className = "container position-absolute containerPlay p-3 m-0 w-100";
       container.style.top = "15rem";
+      container.style.bottom = "0";
       container.innerHTML = `<div class="col d-flex align-items-center gap-2">
                   <a class="nav-link" href="#"><i class="bi bi-play-circle-fill text-success fs-1"></i></a>
                   <a class="nav-link" href="#"><i class="bi bi-heart"></i></a>
