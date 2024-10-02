@@ -113,3 +113,10 @@
 .list-group-item {
   border: none;
 }
+
+#playAlbum {
+  cursor: pointer;
+}
+ol > li {
+  list-style-type: none;
+}
