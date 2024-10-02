@@ -1,4 +1,5 @@
 const mainMusicBox = document.getElementById("mainmusicbox");
+const main = document.createElement("main");
 
 const cantautori = [
   "Fabrizio De André",
@@ -73,6 +74,8 @@ if (albumId) {
       document.getElementById("sec_1").remove();
       document.getElementById("sec_2").remove();
       document.getElementById("sec_3").remove();
+      console.log(data);
+
       mainMusicBox.innerHTML = "";
       let selectedAlbum = document.createElement("div");
       selectedAlbum.className = "col col-lg-9 w-100";
@@ -94,6 +97,45 @@ if (albumId) {
           </div>
         </div>`;
       mainMusicBox.appendChild(selectedAlbum);
+      // GENERAZIONE TABELLA LISTA CANZONI ALBUM
+      let container = document.createElement("div");
+      container.className = "container position-absolute containerPlay p-3 m-0 w-100";
+      container.innerHTML = `<div class="col d-flex align-items-center gap-2">
+                  <a class="nav-link" href="#"><i class="bi bi-play-circle-fill text-success fs-1"></i></a>
+                  <a class="nav-link" href="#"><i class="bi bi-heart"></i></a>
+                  <a class="nav-link" href="#"><i class="bi bi-arrow-down-circle"></i></a>
+                  <a class="nav-link" href="#"><i class="bi bi-three-dots fs-3"></i></a>
+                </div>`;
+      let tracksBox = document.createElement("div");
+      tracksBox.className = "container";
+      tracksBox.innerHTML = `<div class="row border-bottom d-flex justify-content-between">
+                    <div class="col font-monospace text-white-50"># TITOLO</div>
+                    <div class="col d-flex justify-content-end font-monospace text-white-50">RIPRODUZIONI</div>
+                    <div class="col d-flex justify-content-end font-monospace text-white-50">
+                      <i class="bi bi-clock"></i>
+                    </div>
+                  </div>`;
+      data.tracks.data.forEach((track, i) => {
+        let row = document.createElement("div");
+        row.className = "row";
+        row.innerHTML = `<div class="col col-4 d-flex gap-2">
+                      <div class="text-white-50">${i + 1}</div>
+                      <div>
+                        <h6 class="mb-0">${track.title}</h6>
+                        <p class="text-white-50">${track.artist.name}</p>
+                      </div>
+                    </div>
+                    <div class="col col-4 d-flex justify-content-end text-white-50">
+                      <p>${track.rank}</p>
+                    </div>
+                    <div class="col col-4 d-flex justify-content-end text-white-50">
+                      <p>${track.duration}</p>
+                    </div>`;
+        tracksBox.appendChild(row);
+      });
+
+      container.appendChild(tracksBox);
+      mainMusicBox.appendChild(container);
     })
     .catch((error) => {
       console.log("ERRORE " + error);
