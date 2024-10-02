@@ -52,8 +52,42 @@ const cantautori = [
   "Bruce Springsteen",
   "Paul Simon",
   "Cat Stevens",
-  "John Lennon"
+  "John Lennon",
 ];
+
+const albumCard = document.getElementById("albumCard");
+const albumCardGeneration = function () {
+  const cantanteLink = `https://striveschool-api.herokuapp.com/api/deezer/search?q=${cantautoriPerLink[Math.floor(Math.random() * cantautoriPerLink.length)]}`;
+  fetch(cantanteLink)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Errore nella domanda al server");
+      }
+    })
+    .then((data) => {
+      const randomIndex = Math.floor(Math.random() * data.data.length);
+      const singleCard = document.createElement("div");
+      singleCard.className = "col p-1";
+      singleCard.innerHTML = `
+                 <div class="card bg-dark text-white-50 shadow-lg h-100">
+                    <div class="p-2">
+                      <img src="${data.data[randomIndex].album.cover_medium}" class="card-img-top" alt="estate 2022" />
+                      <div class="card-body">
+                        <h5 class="card-title text-white text-truncate">${data.data[randomIndex].album.title}</h5>
+                        <p class="card-text text-truncate">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                      </div>
+                    </div>
+                  </div>
+`;
+      console.log(data);
+      albumCard.appendChild(singleCard);
+    })
+    .catch((error) => {
+      console.log("ERRORE", error);
+    });
+};
 
 const cantautoriPerLink = cantautori.map((item) => item.replace(/\s+/g, "").toLowerCase());
 
@@ -166,6 +200,9 @@ if (albumId) {
           <button id="salvabtn" class="rounded-pill px-4 py-2 border text-white">Salva</button>
         </div>`;
       mainMusicBox.append(mainImage, cantanteBox);
+      for (i = 0; i < 5; i++) {
+        albumCardGeneration();
+      }
     })
     .catch((err) => {
       console.log("Errore" + err);
