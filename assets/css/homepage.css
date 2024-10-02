@@ -113,3 +113,6 @@
 .list-group-item {
   border: none;
 }
+ol > li {
+  list-style-type: none;
+}
