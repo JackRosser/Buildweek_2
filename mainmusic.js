@@ -135,6 +135,9 @@ const apiLink = `https://striveschool-api.herokuapp.com/api/deezer/search?q=${ca
 const searchParam = new URLSearchParams(location.search);
 const albumId = searchParam.get("albumid");
 
+const searchParamForArtist = new URLSearchParams(location.search);
+const artistId = searchParam.get("artistId");
+
 if (albumId) {
   fetch(`https://striveschool-api.herokuapp.com/api/deezer/album/${albumId}`)
     .then((response) => {
@@ -215,6 +218,26 @@ if (albumId) {
     .catch((error) => {
       console.log("ERRORE " + error);
     });
+} else if (artistId) {
+  fetch(` https://striveschool-api.herokuapp.com/api/deezer/artist/${artistId}`)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("errore nel prendere id dell'artista");
+      }
+    })
+    .then((data) => {
+      document.getElementById("sec_1").remove();
+      document.getElementById("sec_2").remove();
+      document.getElementById("sec_3").remove();
+      console.log("sono id artist", data);
+
+      mainMusicBox.innerHTML = "";
+    })
+    .catch((err) => {
+      console.log("error", err);
+    });
 } else {
   fetch(apiLink)
     .then((response) => {
@@ -231,9 +254,9 @@ if (albumId) {
       let cantanteBox = document.createElement("div");
       cantanteBox.className = "d-flex flex-column justify-content-between overflow-hidden";
       cantanteBox.innerHTML = `
-        <h6 id="playAlbum"><a href="./homepage.html?albumid=${data.data[randomCantante].album.id}">ALBUM</a></h6>
+        <h6 id="playAlbum"><a class="nav-link" href="./homepage.html?albumid=${data.data[randomCantante].album.id}">ALBUM</a></h6>
         <h1 class="text-break">${data.data[randomCantante].title}</h1>
-        <h5 class="mb-0">${data.data[randomCantante].artist.name}</h5>
+        <h5 class="mb-0"><a class="nav-link" href="./homepage.html?artistid=${data.data[randomCantante].artist.id}">${data.data[randomCantante].artist.name}</a></h5>
         <h5>Ascolta il nuovo singolo targato ${data.data[randomCantante].artist.name}</h5>
         <div class="d-flex gap-3">
           <button id="playbtn" class="rounded-pill px-4 py-2 border">Play</button>
