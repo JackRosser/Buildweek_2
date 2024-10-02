@@ -100,6 +100,7 @@ if (albumId) {
       // GENERAZIONE TABELLA LISTA CANZONI ALBUM
       let container = document.createElement("div");
       container.className = "container position-absolute containerPlay p-3 m-0 w-100";
+      container.style.top = "15rem";
       container.innerHTML = `<div class="col d-flex align-items-center gap-2">
                   <a class="nav-link" href="#"><i class="bi bi-play-circle-fill text-success fs-1"></i></a>
                   <a class="nav-link" href="#"><i class="bi bi-heart"></i></a>
@@ -107,7 +108,7 @@ if (albumId) {
                   <a class="nav-link" href="#"><i class="bi bi-three-dots fs-3"></i></a>
                 </div>`;
       let tracksBox = document.createElement("div");
-      tracksBox.className = "container";
+      tracksBox.className = "";
       tracksBox.innerHTML = `<div class="row border-bottom d-flex justify-content-between">
                     <div class="col font-monospace text-white-50"># TITOLO</div>
                     <div class="col d-flex justify-content-end font-monospace text-white-50">RIPRODUZIONI</div>
