@@ -12,3 +12,23 @@
 .img-artist {
   width: 3rem;
 }
+.rounded-circle {
+  width: 4rem;
+}
+.small-text {
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+.heart-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: 2px solid green;
+  border-radius: 50%;
+  background-color: green;
+  position: relative;
+  left: 30px;
+  bottom: 20px;
+}
