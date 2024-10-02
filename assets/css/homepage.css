@@ -117,3 +117,6 @@
 #playAlbum {
   cursor: pointer;
 }
+ol > li {
+  list-style-type: none;
+}
