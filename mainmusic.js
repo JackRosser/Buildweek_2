@@ -136,7 +136,7 @@ const searchParam = new URLSearchParams(location.search);
 const albumId = searchParam.get("albumid");
 
 const searchParamForArtist = new URLSearchParams(location.search);
-const artistId = searchParam.get("artistId");
+const artistId = searchParamForArtist.get("artistid");
 
 if (albumId) {
   fetch(`https://striveschool-api.herokuapp.com/api/deezer/album/${albumId}`)
@@ -246,7 +246,8 @@ if (albumId) {
       console.log("ERRORE " + error);
     });
 } else if (artistId) {
-  fetch(` https://striveschool-api.herokuapp.com/api/deezer/artist/${artistId}`)
+  //al click sull'artista prendiamo l'id e facciamo uscire una nuova pagina html
+  fetch(`https://striveschool-api.herokuapp.com/api/deezer/artist/${artistId}`)
     .then((response) => {
       if (response.ok) {
         return response.json();
@@ -261,6 +262,130 @@ if (albumId) {
       console.log("sono id artist", data);
 
       mainMusicBox.innerHTML = "";
+
+      const artistMain = document.createElement("div");
+      artistMain.className = "col col-lg-9 w-100";
+      //creiamo la parte di sopra della pagina con la foto in background
+      artistMain.innerHTML = `
+            <div class="artisti-box" style="background-image: url(${data.picture_medium});  height: fit-content; background-position: center; background-repeat: no-repeat; background-size: cover;">
+              <div class="col d-flex gap-2 justify-content-between pb-4">
+                <div class="d-flex gap-2">
+                  <a href=" #" class="nav-link"><i class="bi bi-arrow-left-circle-fill text-black opacity-75 ps-3 pe-1 fs-2"></i></a>
+                  <a href="#" class="nav-link"> <i class="bi bi-arrow-right-circle-fill text-black opacity-75 fs-2"></i></a>
+                </div>
+
+                <a
+                  class="nav-link dropdown-toggle bg-black rounded-4 opacity-75 px-1 pe-1 mt-1 me-1 d-flex align-items-center"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Gianmarco Arzanese
+                </a>
+                <ul class="dropdown-menu opacity-50">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="row m-0 ps-3">
+                <div class="col col-lg-9">
+                  <p class="mb-0 mt-5"><i class="fas fa-check-circle me-2"></i>Artista verificato</p>
+                  <h1 class="fw-bold">${data.name}</h1>
+                  <p class="mt-3">3.433.158 ascoltatori mensili</p>
+                </div>
+              </div>
+            </div>    
+          `;
+
+      //prendiamo la fetch delle tracks presente nell'id dell'artista
+      //per popolare la lista delle canzoni popolari
+      fetch(`https://striveschool-api.herokuapp.com/api/deezer/artist/${artistId}/top?limit=10`)
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("Errore nel prendere i brani dell'artista");
+          }
+        })
+        .then((tracks) => {
+          const listMusic = document.createElement("div");
+          listMusic.className = "list-music";
+          listMusic.innerHTML = `
+      
+       <button class="btn">
+    <a class="nav-link" href="#"><i class="bi bi-play-circle-fill text-success fa-3x"></i></a>
+  </button>
+  <button class="btn btn-outline-light mx-3 btn-sm text-uppercase fw-bold" role="button" tabindex="0">FOLLOWING</button>
+  <button id="3dots" class="btn fs-6">
+    <i class="bi bi-three-dots text-light"></i>
+  </button>
+  <h5>Popolari</h5>
+  <div id="tracks-list" class="container d-flex flex-row-reverse">
+    
+
+      
+      
+      <div class="container">
+      <h5>Brani che ti piacciono</h5>
+      <div class="d-flex align-items-start mt-3">
+        <div>
+          <img src="${data.picture_medium}" class="rounded-circle me-2" alt="avatar" />
+          <i class="bi bi-suit-heart-fill heart-circle ms-2"></i>
+        </div>
+        <div class="mt-2">
+        <strong class="small-text">Hai messo mi piace a 11 Brani</strong>
+        <p class="small">Di Yellostone</p>
+        </div>
+        
+        </div>
+        <a class="nav-link mt-4" href="#">VISUALIZZA ALTRO</a>
+        </div>
+        </div>
+            `;
+          //forEach per ciclare le tracce e generare le col che le contengono
+          const tracksList = listMusic.querySelector("#tracks-list");
+          const trackContainer = document.createElement("div");
+          trackContainer.className = "col-8";
+          tracks.data.forEach((track, i) => {
+            const minutes = Math.floor(track.duration / 60);
+            const seconds = track.duration % 60;
+            const formattedTime = `${minutes}:${seconds.toString().padStart(2, "0")}`;
+            const rowTrack = document.createElement("div");
+            rowTrack.className = "row";
+            rowTrack.innerHTML = `
+           
+        <div class="col col-4 d-flex gap-2 align-items-center">
+          <div class="text-white-50">${i + 1}</div>
+          <div class="d-flex m-2 align-items-center">
+            <img src="${track.album.cover_small}" alt="${track.title}" />
+            <p class="mt-6 mb-1">${track.title}</p>
+          </div>
+        </div>
+        <div class="col col-4 d-flex align-items-center justify-content-end text-white-50">
+          <p class="mt-6 mb-1">${track.rank}</p>
+        </div>
+        <div class="col col-3 d-flex align-items-center justify-content-end text-white-50">
+          <p class="mt-6 mb-1">${formattedTime}</p>
+        </div>
+     
+
+          `;
+            trackContainer.appendChild(rowTrack);
+          });
+
+          tracksList.appendChild(trackContainer);
+
+          artistMain.appendChild(listMusic);
+        })
+        .catch((err) => {
+          console.error("Errore nella seconda fetch:", err);
+        });
+
+      mainMusicBox.appendChild(artistMain);
     })
     .catch((err) => {
       console.log("error", err);
