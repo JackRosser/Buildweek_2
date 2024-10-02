@@ -1,4 +1,5 @@
 const mainMusicBox = document.getElementById("mainmusicbox");
+const albumGian = document.getElementById("albumgian");
 
 const cantautori = [
   "Fabrizio De André",
@@ -54,10 +55,6 @@ const cantautori = [
   "John Lennon",
 ];
 
-// const cantautoriLog = cantautori.forEach((e) => {
-//     e.toLocaleLowerCase()
-// })
-
 const cantautoriPerLink = cantautori.map((item) =>
   item.replace(/\s+/g, "").toLocaleLowerCase()
 );
@@ -84,7 +81,7 @@ fetch(apiLink)
     let cantanteBox = document.createElement("div");
     cantanteBox.className =
       "d-flex flex-column justify-content-between overflow-hidden";
-    cantanteBox.innerHTML = `  <h6>ALBUM</h6>
+    cantanteBox.innerHTML = `  <h6 id="playAlbum">ALBUM</h6>
   <h1 class="text-break">${data.data[randomCantante].title}</h1>
   <h5 class="mb-0">${data.data[randomCantante].artist.name}</h5>
   <h5>Ascolta il nuovo singolo targato ${data.data[randomCantante].artist.name}</h5>
@@ -94,6 +91,27 @@ fetch(apiLink)
   </div>`;
     mainMusicBox.append(mainImage, cantanteBox);
     // FINE MAIN MENU
+
+    // gianmarco inizia
+
+    const playAlbum = cantanteBox.querySelector("#playAlbum");
+    playAlbum.addEventListener("click", () => {
+      const albumDiv = document.createElement("div");
+      albumDiv.innerHTML = `
+        <p>ALBUM</p>
+        <h2 class="fw-bold">${data.data[randomCantante].title}</h2>
+        <div class="col d-flex flex-row gap-1 align-content-center">
+          <img src="${mainImage.src}" alt="logo" class="rounded-circle" style="width: 2rem" />
+          <p class="fw-bolder m-0">${data.data[randomCantante].artist.name}</p>
+          <p class="m-0">2017</p>
+          <p class="m-0">12 brani</p>
+          <p class="opacity-75 m-0">53 min 20 sec</p>
+        </div>`;
+      albumGian.innerHTML = "";
+      albumGian.appendChild(albumDiv);
+    });
+
+    // fine gianmarco
   })
   .catch((err) => {
     console.log("Errore" + err);

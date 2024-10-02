@@ -113,3 +113,7 @@
 .list-group-item {
   border: none;
 }
+
+#playAlbum {
+  cursor: pointer;
+}
