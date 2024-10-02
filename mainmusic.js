@@ -88,6 +88,47 @@ const albumCardGeneration = function () {
       console.log("ERRORE", error);
     });
 };
+const sec1 = document.getElementById("sec_1");
+const playlistCard = document.getElementById("playlitsBox");
+const playlistCardGeneration = function () {
+  const cantanteLink = `https://striveschool-api.herokuapp.com/api/deezer/search?q=${cantautoriPerLink[Math.floor(Math.random() * cantautoriPerLink.length)]}`;
+  fetch(cantanteLink)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error("Errore nella card");
+      }
+    })
+    .then((data) => {
+      const randomIndex = Math.floor(Math.random() * data.data.length);
+      const singlePlaylist = document.createElement("div");
+      singlePlaylist.className = "col-4 p-1 shadow-lg";
+      singlePlaylist.innerHTML = `
+                  <div class="d-flex flex-row rounded-1 align-items-center">
+                    <div class="col col-12 col-md-4 d-flex flex-column">
+                      <div class="d-flex flex-row" id="imgalbum1">
+                        <img src="${data.data[0].album.cover_small}" alt="logo" class="gianmarcoimg" />
+                        <img src="${data.data[1].album.cover_small}" alt="logo" class="gianmarcoimg" />
+                      </div>
+                      <div class="d-flex flex-row" id="imgalbum2">
+                        <img src="${data.data[2].album.cover_small}" alt="logo" class="gianmarcoimg" />
+                        <img src="${data.data[3].album.cover_small}" alt="logo" class="gianmarcoimg" />
+                      </div>
+                    </div>
+                    <div class="col col-12 col-md-8">
+                      <p class="m-0 fw-medium text-truncate" id="titloalbum">${data.data[randomIndex].album.title}<br />(sett-ott 2022)</p>
+                    </div>
+                  </div>
+`;
+      console.log(data);
+      playlistCard.appendChild(singlePlaylist);
+      sec1.appendChild(playlistCard);
+    })
+    .catch((error) => {
+      console.log("ERRORE", error);
+    });
+};
 
 const cantautoriPerLink = cantautori.map((item) => item.replace(/\s+/g, "").toLowerCase());
 
@@ -202,6 +243,9 @@ if (albumId) {
       mainMusicBox.append(mainImage, cantanteBox);
       for (i = 0; i < 5; i++) {
         albumCardGeneration();
+      }
+      for (i = 0; i < 6; i++) {
+        playlistCardGeneration();
       }
     })
     .catch((err) => {
