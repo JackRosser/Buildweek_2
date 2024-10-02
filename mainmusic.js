@@ -63,7 +63,7 @@ const albumCardGeneration = function () {
       if (response.ok) {
         return response.json();
       } else {
-        throw new Error("Errore nella domanda al server");
+        throw new Error("Errore nella card");
       }
     })
     .then((data) => {
