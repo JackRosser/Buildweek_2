@@ -267,7 +267,7 @@ if (albumId) {
       artistMain.className = "col col-lg-9 w-100";
       //creiamo la parte di sopra della pagina con la foto in background
       artistMain.innerHTML = `
-            <div class="artisti-box" style="background-image: url(${data.picture_medium});  height: fit-content; background-position: center; background-repeat: no-repeat; background-size: cover;">
+            <div class="artisti-box" style="background-image: url(${data.picture_big});  height: fit-content; background-position: center; background-repeat: no-repeat; background-size: cover;">
               <div class="col d-flex gap-2 justify-content-between pb-4">
                 <div class="d-flex gap-2">
                   <a href=" #" class="nav-link"><i class="bi bi-arrow-left-circle-fill text-black opacity-75 ps-3 pe-1 fs-2"></i></a>
@@ -303,7 +303,7 @@ if (albumId) {
 
       //prendiamo la fetch delle tracks presente nell'id dell'artista
       //per popolare la lista delle canzoni popolari
-      fetch(`https://striveschool-api.herokuapp.com/api/deezer/artist/${artistId}/top?limit=10`)
+      fetch(`https://striveschool-api.herokuapp.com/api/deezer/artist/${artistId}/top?limit=6`)
         .then((response) => {
           if (response.ok) {
             return response.json();
