@@ -73,7 +73,7 @@ const albumCardGeneration = function () {
                     <div class="p-2">
                       <img src="${data.data[randomIndex].album.cover_medium}" class="card-img-top" alt="estate 2022" />
                       <div class="card-body">
-                        <h5 class="card-title text-white text-truncate">${data.data[randomIndex].album.title}</h5>
+                        <h5 class="card-title text-white fs-6">${data.data[randomIndex].album.title}</h5>
                         <p class="card-text text-truncate">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                       </div>
                     </div>
@@ -353,7 +353,7 @@ if (albumId) {
           //forEach per ciclare le tracce e generare le col che le contengono
           const tracksList = listMusic.querySelector("#tracks-list");
           const trackContainer = document.createElement("div");
-          trackContainer.className = "col-8";
+          trackContainer.className = "col-6";
           tracks.data.forEach((track, i) => {
             const minutes = Math.floor(track.duration / 60);
             const seconds = track.duration % 60;
@@ -366,7 +366,7 @@ if (albumId) {
           <div class="text-white-50">${i + 1}</div>
           <div class="d-flex m-2 align-items-center">
             <img src="${track.album.cover_small}" alt="${track.title}" />
-            <p class="mt-6 mb-1">${track.title}</p>
+            <p class="mt-6 mb-1 ms-2">${track.title}</p>
           </div>
         </div>
         <div class="col col-4 d-flex align-items-center justify-content-end text-white-50">
