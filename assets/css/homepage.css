@@ -127,3 +127,11 @@ body {
 ol > li {
   list-style-type: none;
 }
+
+#searchAlbum {
+  width: 160px;
+}
+
+#searchAlbum:hover {
+  transform: scale(1) !important;
+}
