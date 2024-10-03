@@ -29,3 +29,9 @@
 .list-music {
   background: linear-gradient(to top, black, transparent);
 }
+.artisti-box {
+  height: fit-content;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

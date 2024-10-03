@@ -186,7 +186,7 @@ if (albumId) {
             <div class="row m-0 pb-3 ps-3">
             
               <div class="col col-lg-3 shadow-lg p-0 ps-1">
-                <img src="${data.cover_medium}" alt="album" style="width: 100%" />
+                <img class="w-100" src="${data.cover_medium}" alt="album"  />
               </div>
               <div class="col col-lg-9" id="albumgian">
                 <p>ALBUM</p>
@@ -267,7 +267,7 @@ if (albumId) {
       artistMain.className = "col col-lg-9 w-100";
       //creiamo la parte di sopra della pagina con la foto in background
       artistMain.innerHTML = `
-            <div class="artisti-box" style="background-image: url(${data.picture_big});  height: fit-content; background-position: center; background-repeat: no-repeat; background-size: cover;">
+            <div class="artisti-box" style="background-image: url(${data.picture_big}); ">
               <div class="col d-flex gap-2 justify-content-between pb-4">
                 <div class="d-flex gap-2">
                   <a href=" #" class="nav-link"><i class="bi bi-arrow-left-circle-fill text-black opacity-75 ps-3 pe-1 fs-2"></i></a>
