@@ -50,7 +50,7 @@ const cantautori = [
   "Bruce Springsteen",
   "Paul Simon",
   "Cat Stevens",
-  "John Lennon"
+  "John Lennon",
 ];
 
 const albumCard = document.getElementById("albumCard");
@@ -414,11 +414,32 @@ if (albumId) {
     })
     .then((data) => {
       let randomCantante = Math.floor(Math.random() * data.data.length);
+      const playButton = document.getElementById("next");
       audioPreview = data.data[randomCantante].preview;
       document.getElementById("next").addEventListener("click", function () {
         const audioPlayer = document.getElementById("audioPlayer");
         audioPlayer.src = audioPreview;
-        audioPlayer.play();
+        // audioPlayer.play();
+
+        if (audioPlayer.src !== audioPreview) {
+          audioPlayer.src = audioPreview;
+        }
+
+        // Se l'audio è in pausa (o non è partito ancora), riproduci l'audio
+        if (audioPlayer.paused) {
+          audioPlayer.play();
+
+          // Cambia l'icona da "play" a "pause"
+          playButton.querySelector("i").classList.remove("bi-play-circle-fill");
+          playButton.querySelector("i").classList.add("bi-pause-circle-fill");
+        } else {
+          // Se l'audio sta già riproducendo, metti in pausa
+          audioPlayer.pause();
+
+          // Cambia l'icona da "pause" a "play"
+          playButton.querySelector("i").classList.remove("bi-pause-circle-fill");
+          playButton.querySelector("i").classList.add("bi-play-circle-fill");
+        }
       });
       let mainImage = document.createElement("img");
       mainImage.src = data.data[randomCantante].artist.picture_medium;
