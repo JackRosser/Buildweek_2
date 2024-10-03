@@ -155,6 +155,7 @@ if (albumId) {
       mainMusicBox.innerHTML = "";
       let selectedAlbum = document.createElement("div");
       selectedAlbum.className = "col col-lg-9 w-100";
+
       selectedAlbum.innerHTML = `
         <div class="mainbox w-100 col col-12 col-lg-7 text-white overflow-hidden p-0 Gianmarco">
         
@@ -221,6 +222,9 @@ if (albumId) {
                     </div>
                   </div>`;
       data.tracks.data.forEach((track, i) => {
+        const minutes = Math.floor(track.duration / 60);
+        const seconds = track.duration % 60;
+        const formattedTime = `${minutes}:${seconds.toString().padStart(2, "0")}`;
         let row = document.createElement("div");
         row.className = "row";
         row.innerHTML = `<div class="col col-4 d-flex gap-2">
@@ -234,7 +238,7 @@ if (albumId) {
                       <p>${track.rank}</p>
                     </div>
                     <div class="col col-4 d-flex justify-content-end text-white-50">
-                      <p>${track.duration}</p>
+                      <p>${formattedTime}</p>
                     </div>`;
         tracksBox.appendChild(row);
       });
