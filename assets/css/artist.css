@@ -2,13 +2,6 @@
   color: #1da1f2;
 }
 
-.artisti-box {
-  height: fit-content;
-  background-image: url(../imgs/search/image-38.jpg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
 .img-artist {
   width: 3rem;
 }
@@ -35,4 +28,10 @@
 
 .list-music {
   background: linear-gradient(to top, black, transparent);
+}
+.artisti-box {
+  height: fit-content;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
