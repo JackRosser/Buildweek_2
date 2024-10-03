@@ -436,7 +436,7 @@ if (albumId) {
           // Se l'audio sta già riproducendo, metti in pausa
           audioPlayer.pause();
 
-          // Cambia l'icona da "pause" a "play"
+          // Cambia l'icona da "pause" a "play" ma non funziona vedo domani
           playButton.querySelector("i").classList.remove("bi-pause-circle-fill");
           playButton.querySelector("i").classList.add("bi-play-circle-fill");
         }
