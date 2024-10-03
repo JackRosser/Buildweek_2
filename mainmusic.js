@@ -54,8 +54,13 @@ const cantautori = [
 ];
 
 const albumCard = document.getElementById("albumCard");
+
 const albumCardGeneration = function () {
-  const cantanteLink = `https://striveschool-api.herokuapp.com/api/deezer/search?q=${cantautoriPerLink[Math.floor(Math.random() * cantautoriPerLink.length)]}`;
+  const cantanteLink = `https://striveschool-api.herokuapp.com/api/deezer/search?q=${
+    cantautoriPerLink[Math.floor(Math.random() * cantautoriPerLink.length)]
+  }`;
+
+  console.log(tracciaId);
   fetch(cantanteLink)
     .then((response) => {
       if (response.ok) {
@@ -81,6 +86,18 @@ const albumCardGeneration = function () {
 `;
       console.log(data);
       albumCard.appendChild(singleCard);
+
+      const play = document.getElementById("");
+
+      const playStop = function () {
+        if (isplaying) {
+          audio.pause();
+          isplaying = false;
+        } else {
+          audio.play();
+          isplaying = true;
+        }
+      };
     })
     .catch((error) => {
       console.log("ERRORE", error);
@@ -89,7 +106,9 @@ const albumCardGeneration = function () {
 const sec1 = document.getElementById("sec_1");
 const playlistCard = document.getElementById("playlitsBox");
 const playlistCardGeneration = function () {
-  const cantanteLink = `https://striveschool-api.herokuapp.com/api/deezer/search?q=${cantautoriPerLink[Math.floor(Math.random() * cantautoriPerLink.length)]}`;
+  const cantanteLink = `https://striveschool-api.herokuapp.com/api/deezer/search?q=${
+    cantautoriPerLink[Math.floor(Math.random() * cantautoriPerLink.length)]
+  }`;
   fetch(cantanteLink)
     .then((response) => {
       if (response.ok) {
@@ -128,9 +147,13 @@ const playlistCardGeneration = function () {
     });
 };
 
-const cantautoriPerLink = cantautori.map((item) => item.replace(/\s+/g, "").toLowerCase());
+const cantautoriPerLink = cantautori.map((item) =>
+  item.replace(/\s+/g, "").toLowerCase()
+);
 
-const apiLink = `https://striveschool-api.herokuapp.com/api/deezer/search?q=${cantautoriPerLink[Math.floor(Math.random() * cantautoriPerLink.length)]}`;
+const apiLink = `https://striveschool-api.herokuapp.com/api/deezer/search?q=${
+  cantautoriPerLink[Math.floor(Math.random() * cantautoriPerLink.length)]
+}`;
 
 const searchParam = new URLSearchParams(location.search);
 const albumId = searchParam.get("albumid");
@@ -175,7 +198,8 @@ if (albumId) {
       mainMusicBox.appendChild(selectedAlbum);
       // GENERAZIONE TABELLA LISTA CANZONI ALBUM
       let container = document.createElement("div");
-      container.className = "container position-absolute containerPlay p-3 m-0 w-100";
+      container.className =
+        "container position-absolute containerPlay p-3 m-0 w-100";
       container.style.top = "15rem";
       container.style.bottom = "0";
       container.innerHTML = `<div class="col d-flex align-items-center gap-2">
@@ -248,11 +272,14 @@ if (albumId) {
     })
     .then((data) => {
       let randomCantante = Math.floor(Math.random() * data.data.length);
+
       let mainImage = document.createElement("img");
+
       mainImage.src = data.data[randomCantante].artist.picture_medium;
       mainImage.alt = `${data.data[randomCantante].title_short} picture`;
       let cantanteBox = document.createElement("div");
-      cantanteBox.className = "d-flex flex-column justify-content-between overflow-hidden";
+      cantanteBox.className =
+        "d-flex flex-column justify-content-between overflow-hidden";
       cantanteBox.innerHTML = `
         <h6 id="playAlbum"><a class="nav-link" href="./homepage.html?albumid=${data.data[randomCantante].album.id}">ALBUM</a></h6>
         <h1 class="text-break">${data.data[randomCantante].title}</h1>
