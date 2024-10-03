@@ -252,6 +252,14 @@ if (albumId) {
                       <p>${formattedTime}</p>
                     </div>`;
         tracksBox.appendChild(row);
+
+        audioPreview = data.tracks.data[0].preview;
+        console.log("questo e;", audioPreview);
+        document.getElementById("next").addEventListener("click", function () {
+          const audioPlayer = document.getElementById("audioPlayer");
+          audioPlayer.src = audioPreview;
+          audioPlayer.play();
+        });
       });
 
       container.appendChild(tracksBox);
@@ -393,6 +401,7 @@ if (albumId) {
      
 
           `;
+
             trackContainer.appendChild(rowTrack);
           });
 
@@ -420,7 +429,7 @@ if (albumId) {
     .then((data) => {
       let randomCantante = Math.floor(Math.random() * data.data.length);
       audioPreview = data.data[randomCantante].preview;
-      document.getElementById("play").addEventListener("click", function () {
+      document.getElementById("next").addEventListener("click", function () {
         const audioPlayer = document.getElementById("audioPlayer");
         audioPlayer.src = audioPreview;
         audioPlayer.play();
