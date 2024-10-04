@@ -9,7 +9,7 @@ body {
   height: 100vh;
 }
 
-@media screen and (max-width: 991px) {
+/* @media screen and (max-width: 991px) {
   .mainbox {
     height: 60vh;
   }
@@ -19,7 +19,7 @@ body {
   .navmenu {
     height: 27vh;
   }
-}
+} */
 
 .divchat > p {
   margin: 4px;
