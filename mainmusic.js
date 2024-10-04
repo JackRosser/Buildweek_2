@@ -50,7 +50,7 @@ const cantautori = [
   "Bruce Springsteen",
   "Paul Simon",
   "Cat Stevens",
-  "John Lennon",
+  "John Lennon"
 ];
 
 const albumCard = document.getElementById("albumCard");
@@ -156,7 +156,7 @@ if (albumId) {
       selectedAlbum.innerHTML = `
         <div class="mainbox w-100 col col-12 col-lg-7 text-white overflow-hidden p-0 Gianmarco">
         
-          <div class="bgmain h-70 position-relative z-0">
+          <div class="bgmain h-70 position-relative z-0 p-2" style="height: 20rem">
 
            <div class="col d-flex gap-2 justify-content-between align-content-center pb-4">
                 <div class="d-flex gap-2">
@@ -183,8 +183,8 @@ if (albumId) {
               </div>
             <div class="row m-0 pb-3 ps-3">
             
-              <div class="col col-lg-3 p-0 ps-1">
-  <img class="w-100 shadow-lg" src="${data.cover_medium}" alt="album" />
+              <div class="col col-lg-3 p-0 ps-1" style="max-width: 200px; max-height: 100px;">
+  <img src="${data.cover_medium}" alt="album" class="w-100"/>
 </div>
               <div class="col col-lg-9" id="albumgian">
                 <p>ALBUM</p>
@@ -200,7 +200,7 @@ if (albumId) {
       // GENERAZIONE TABELLA LISTA CANZONI ALBUM
       let container = document.createElement("div");
       container.className = "row position-absolute containerPlay p-3  w-100";
-      container.style.top = "18rem";
+      container.style.top = "20rem";
       container.style.bottom = "0";
       container.style.overflow = "auto";
       container.innerHTML = `<div class="col d-flex align-items-center gap-2">
