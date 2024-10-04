@@ -102,23 +102,19 @@ const playlistCardGeneration = function () {
       const randomIndex = Math.floor(Math.random() * data.data.length);
       const playlitsBox = document.getElementById("playlitsBox");
       const singlePlaylist = document.createElement("div");
-      singlePlaylist.className = "col-6 p-1 shadow-lg";
+      singlePlaylist.className = "col-12 col-md-4 d-flex align-items-center p-0 gap-3 my-1";
       singlePlaylist.innerHTML = `
-                  <div class="d-flex flex-row rounded-1 align-items-center">
-                    <div class="col col-12 col-md-4 d-flex flex-column">
-                      <div class="d-flex flex-row" id="imgalbum1">
-                        <img src="${data.data[0].album.cover_small}" alt="logo" class="gianmarcoimg" />
-                        <img src="${data.data[1].album.cover_small}" alt="logo" class="gianmarcoimg" />
-                      </div>
-                      <div class="d-flex flex-row" id="imgalbum2">
-                        <img src="${data.data[2].album.cover_small}" alt="logo" class="gianmarcoimg" />
-                        <img src="${data.data[3].album.cover_small}" alt="logo" class="gianmarcoimg" />
-                      </div>
+                 <div id="box-delle-immagini" class="d-flex flex-wrap p-0" style="max-width: 60px">
+                    <div class="d-flex">
+                      <div class="d-flex"><img src="${data.data[0].album.cover_small}" style="max-width: 30px" /></div>
+                      <div class="d-flex"><img src="${data.data[1].album.cover_small}" style="max-width: 30px" /></div>
                     </div>
-                    <div class="col col-6">
-                      <p class="m-0 fw-medium text-truncate" id="titloalbum">${data.data[randomIndex].album.title}<br />(sett-ott 2022)</p>
+                    <div class="d-flex">
+                      <div class="d-flex"><img src="${data.data[2].album.cover_small}" style="max-width: 30px" /></div>
+                      <div class="d-flex"><img src="${data.data[3].album.cover_small}" style="max-width: 30px" /></div>
                     </div>
                   </div>
+                  <h6 class="p-0 m-0" style="font-size: 0.8rem">${data.data[randomIndex].album.title}</h6>               
 `;
       console.log(data);
       playlistCard.appendChild(singlePlaylist);
@@ -242,13 +238,61 @@ if (albumId) {
                       <p>${formattedTime}</p>
                     </div>`;
         tracksBox.appendChild(row);
+      });
 
-        audioPreview = data.tracks.data[0].preview;
-        console.log("questo e;", audioPreview);
-        document.getElementById("next").addEventListener("click", function () {
-          const audioPlayer = document.getElementById("audioPlayer");
+      let currentTrackIndex = 0;
+      const playButton = document.getElementById("next");
+      const nextTrBtn = document.getElementById("nextr");
+      const prevTrBtn = document.getElementById("play");
+      const audioPlayer = document.getElementById("audioPlayer");
+      let audioPreview = data.tracks.data[currentTrackIndex].preview;
+
+      playButton.addEventListener("click", function () {
+        const playButtonIcon = playButton.querySelector("i");
+        if (audioPlayer.src !== audioPreview) {
           audioPlayer.src = audioPreview;
+          audioPlayer.load();
+        }
+        if (audioPlayer.paused || audioPlayer.ended) {
           audioPlayer.play();
+          playButtonIcon.classList.remove("bi-play-circle-fill");
+          playButtonIcon.classList.add("bi-pause-circle-fill");
+        } else {
+          audioPlayer.pause();
+          playButtonIcon.classList.remove("bi-pause-circle-fill");
+          playButtonIcon.classList.add("bi-play-circle-fill");
+        }
+      });
+
+      nextTrBtn.addEventListener("click", function () {
+        audioPreview = data.tracks.data[currentTrackIndex].preview;
+        audioPlayer.src = audioPreview;
+        audioPlayer.load();
+        audioPlayer.play();
+        currentTrackIndex++;
+
+        if (currentTrackIndex >= data.tracks.data.length) {
+          currentTrackIndex = 0;
+        }
+      });
+      prevTrBtn.addEventListener("click", function () {
+        audioPreview = data.tracks.data[currentTrackIndex].preview;
+        audioPlayer.src = audioPreview;
+        audioPlayer.load();
+        audioPlayer.play();
+        currentTrackIndex--;
+
+        if (currentTrackIndex < 0) {
+          currentTrackIndex = data.tracks.data.length - 1;
+        }
+      });
+
+      const volumeControl = document.getElementById("volume");
+      volumeControl.addEventListener("click", function () {
+        audioPlayer.volume = volumeControl.value / 100;
+        volumeControl.addEventListener("input", function () {
+          audioPlayer.volume = this.value / 100;
+          console.log("Volume impostato a:", audioPlayer.volume);
         });
       });
 
@@ -328,37 +372,33 @@ if (albumId) {
           const listMusic = document.createElement("div");
           listMusic.className = "list-music";
           listMusic.innerHTML = `
-      
-       <button class="btn">
-    <a class="nav-link" href="#"><i class="bi bi-play-circle-fill text-success fa-3x"></i></a>
-  </button>
-  <button class="btn btn-outline-light mx-3 btn-sm text-uppercase fw-bold" role="button" tabindex="0">FOLLOWING</button>
-  <button id="3dots" class="btn fs-6">
-    <i class="bi bi-three-dots text-light"></i>
-  </button>
-  <h5>Popolari</h5>
-  <div id="tracks-list" class="container d-flex flex-row-reverse">
-    
-
-      
-      
-      <div class="container">
-      <h5>Brani che ti piacciono</h5>
-      <div class="d-flex align-items-start mt-3">
-        <div>
-          <img src="${data.picture_medium}" class="rounded-circle me-2" alt="avatar" />
-          <i class="bi bi-suit-heart-fill heart-circle ms-2"></i>
-        </div>
-        <div class="mt-2">
-        <strong class="small-text">Hai messo mi piace a 11 Brani</strong>
-        <p class="small">Di Yellostone</p>
-        </div>
-        
-        </div>
-        <a class="nav-link mt-4" href="#">VISUALIZZA ALTRO</a>
-        </div>
-        </div>
-            `;
+              
+              <button class="btn">
+            <a class="nav-link" href="#"><i class="bi bi-play-circle-fill text-success fa-3x"></i></a>
+          </button>
+          <button class="btn btn-outline-light mx-3 btn-sm text-uppercase fw-bold" role="button" tabindex="0">FOLLOWING</button>
+          <button id="3dots" class="btn fs-6">
+            <i class="bi bi-three-dots text-light"></i>
+          </button>
+          <h5>Popolari</h5>
+          <div id="tracks-list" class="container d-flex flex-row-reverse">
+          <div class="container">
+              <h5>Brani che ti piacciono</h5>
+              <div class="d-flex align-items-start mt-3">
+                <div>
+                  <img src="${data.picture_medium}" class="rounded-circle me-2" alt="avatar" />
+                  <i class="bi bi-suit-heart-fill heart-circle ms-2"></i>
+                </div>
+                <div class="mt-2">
+                <strong class="small-text">Hai messo mi piace a 11 Brani</strong>
+                <p class="small">Di Yellostone</p>
+                </div>
+                
+                </div>
+                <a class="nav-link mt-4" href="#">VISUALIZZA ALTRO</a>
+                </div>
+                </div>
+                    `;
           //forEach per ciclare le tracce e generare le col che le contengono
           const tracksList = listMusic.querySelector("#tracks-list");
           const trackContainer = document.createElement("div");
@@ -391,6 +431,62 @@ if (albumId) {
             trackContainer.appendChild(rowTrack);
           });
 
+          let currentTrackIndex = 0;
+          const playButton = document.getElementById("next");
+          const nextTrBtn = document.getElementById("nextr");
+          const prevTrBtn = document.getElementById("play");
+          const audioPlayer = document.getElementById("audioPlayer");
+          let audioPreview = tracks.data[currentTrackIndex].preview;
+
+          playButton.addEventListener("click", function () {
+            const playButtonIcon = playButton.querySelector("i");
+            if (audioPlayer.src !== audioPreview) {
+              audioPlayer.src = audioPreview;
+              audioPlayer.load();
+            }
+            if (audioPlayer.paused || audioPlayer.ended) {
+              audioPlayer.play();
+              playButtonIcon.classList.remove("bi-play-circle-fill");
+              playButtonIcon.classList.add("bi-pause-circle-fill");
+            } else {
+              audioPlayer.pause();
+              playButtonIcon.classList.remove("bi-pause-circle-fill");
+              playButtonIcon.classList.add("bi-play-circle-fill");
+            }
+          });
+
+          nextTrBtn.addEventListener("click", function () {
+            audioPreview = tracks.data[currentTrackIndex].preview;
+            audioPlayer.src = audioPreview;
+            audioPlayer.load();
+            audioPlayer.play();
+            currentTrackIndex++;
+            console.log("traccia successiva", currentTrackIndex);
+            if (currentTrackIndex >= tracks.data.length) {
+              currentTrackIndex = 0;
+            }
+          });
+          prevTrBtn.addEventListener("click", function () {
+            audioPreview = tracks.data[currentTrackIndex].preview;
+            audioPlayer.src = audioPreview;
+            audioPlayer.load();
+            audioPlayer.play();
+            currentTrackIndex--;
+            console.log("traccia precedente", currentTrackIndex);
+            if (currentTrackIndex < 0) {
+              currentTrackIndex = tracks.data.length - 1;
+            }
+          });
+
+          const volumeControl = document.getElementById("volume");
+          volumeControl.addEventListener("click", function () {
+            audioPlayer.volume = volumeControl.value / 100;
+            volumeControl.addEventListener("input", function () {
+              audioPlayer.volume = this.value / 100;
+              console.log("Volume impostato a:", audioPlayer.volume);
+            });
+          });
+
           tracksList.appendChild(trackContainer);
 
           artistMain.appendChild(listMusic);
@@ -414,33 +510,36 @@ if (albumId) {
     })
     .then((data) => {
       let randomCantante = Math.floor(Math.random() * data.data.length);
-      const playButton = document.getElementById("next");
-      audioPreview = data.data[randomCantante].preview;
-      document.getElementById("next").addEventListener("click", function () {
-        const audioPlayer = document.getElementById("audioPlayer");
-        audioPlayer.src = audioPreview;
-        // audioPlayer.play();
 
+      const playButton = document.getElementById("next");
+      const volumeControl = document.getElementById("volume");
+      audioPreview = data.data[randomCantante].preview;
+      const audioPlayer = document.getElementById("audioPlayer");
+      document.getElementById("next").addEventListener("click", function () {
+        const playButtonIcon = playButton.querySelector("i");
         if (audioPlayer.src !== audioPreview) {
           audioPlayer.src = audioPreview;
+          audioPlayer.load();
         }
-
-        // Se l'audio è in pausa (o non è partito ancora), riproduci l'audio
-        if (audioPlayer.paused) {
+        if (audioPlayer.paused || audioPlayer.ended) {
           audioPlayer.play();
-
-          // Cambia l'icona da "play" a "pause"
-          playButton.querySelector("i").classList.remove("bi-play-circle-fill");
-          playButton.querySelector("i").classList.add("bi-pause-circle-fill");
+          playButtonIcon.classList.remove("bi-play-circle-fill");
+          playButtonIcon.classList.add("bi-pause-circle-fill");
         } else {
-          // Se l'audio sta già riproducendo, metti in pausa
           audioPlayer.pause();
-
-          // Cambia l'icona da "pause" a "play" ma non funziona vedo domani
-          playButton.querySelector("i").classList.remove("bi-pause-circle-fill");
-          playButton.querySelector("i").classList.add("bi-play-circle-fill");
+          playButtonIcon.classList.remove("bi-pause-circle-fill");
+          playButtonIcon.classList.add("bi-play-circle-fill");
         }
       });
+
+      volumeControl.addEventListener("click", function () {
+        audioPlayer.volume = volumeControl.value / 100;
+        volumeControl.addEventListener("input", function () {
+          audioPlayer.volume = this.value / 100;
+          console.log("Volume impostato a:", audioPlayer.volume);
+        });
+      });
+
       let mainImage = document.createElement("img");
       mainImage.src = data.data[randomCantante].artist.picture_medium;
       mainImage.alt = `${data.data[randomCantante].title_short} picture`;
@@ -467,3 +566,9 @@ if (albumId) {
       console.log("Errore" + err);
     });
 }
+
+const fillTheHeartOfFooter = document.getElementById("heart");
+fillTheHeartOfFooter.addEventListener("click", function () {
+  const heart = fillTheHeartOfFooter.querySelector("i");
+  heart.classList.toggle("text-danger");
+});
