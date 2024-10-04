@@ -247,6 +247,7 @@ if (albumId) {
       let currentTrackIndex = 0;
       const playButton = document.getElementById("next");
       const nextTrBtn = document.getElementById("nextr");
+      const prevTrBtn = document.getElementById("play");
       const audioPlayer = document.getElementById("audioPlayer");
       let audioPreview = data.tracks.data[currentTrackIndex].preview;
 
@@ -273,9 +274,20 @@ if (albumId) {
         audioPlayer.load();
         audioPlayer.play();
         currentTrackIndex++;
-        console.log("la prossima traccia", currentTrackIndex);
+
         if (currentTrackIndex >= data.tracks.data.length) {
           currentTrackIndex = 0;
+        }
+      });
+      prevTrBtn.addEventListener("click", function () {
+        audioPreview = data.tracks.data[currentTrackIndex].preview;
+        audioPlayer.src = audioPreview;
+        audioPlayer.load();
+        audioPlayer.play();
+        currentTrackIndex--;
+
+        if (currentTrackIndex < 0) {
+          currentTrackIndex = data.tracks.data.length - 1;
         }
       });
 
