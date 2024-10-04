@@ -50,7 +50,7 @@ const cantautori = [
   "Bruce Springsteen",
   "Paul Simon",
   "Cat Stevens",
-  "John Lennon",
+  "John Lennon"
 ];
 
 const albumCard = document.getElementById("albumCard");
@@ -102,23 +102,19 @@ const playlistCardGeneration = function () {
       const randomIndex = Math.floor(Math.random() * data.data.length);
       const playlitsBox = document.getElementById("playlitsBox");
       const singlePlaylist = document.createElement("div");
-      singlePlaylist.className = "col-6 p-1 shadow-lg";
+      singlePlaylist.className = "col-12 col-md-4 d-flex align-items-center p-0 gap-3 my-1";
       singlePlaylist.innerHTML = `
-                  <div class="d-flex flex-row rounded-1 align-items-center">
-                    <div class="col col-12 col-md-4 d-flex flex-column">
-                      <div class="d-flex flex-row" id="imgalbum1">
-                        <img src="${data.data[0].album.cover_small}" alt="logo" class="gianmarcoimg" />
-                        <img src="${data.data[1].album.cover_small}" alt="logo" class="gianmarcoimg" />
-                      </div>
-                      <div class="d-flex flex-row" id="imgalbum2">
-                        <img src="${data.data[2].album.cover_small}" alt="logo" class="gianmarcoimg" />
-                        <img src="${data.data[3].album.cover_small}" alt="logo" class="gianmarcoimg" />
-                      </div>
+                 <div id="box-delle-immagini" class="d-flex flex-wrap p-0" style="max-width: 60px">
+                    <div class="d-flex">
+                      <div class="d-flex"><img src="${data.data[0].album.cover_small}" style="max-width: 30px" /></div>
+                      <div class="d-flex"><img src="${data.data[1].album.cover_small}" style="max-width: 30px" /></div>
                     </div>
-                    <div class="col col-6">
-                      <p class="m-0 fw-medium text-truncate" id="titloalbum">${data.data[randomIndex].album.title}<br />(sett-ott 2022)</p>
+                    <div class="d-flex">
+                      <div class="d-flex"><img src="${data.data[2].album.cover_small}" style="max-width: 30px" /></div>
+                      <div class="d-flex"><img src="${data.data[3].album.cover_small}" style="max-width: 30px" /></div>
                     </div>
                   </div>
+                  <h6 class="p-0 m-0" style="font-size: 0.8rem">${data.data[randomIndex].album.title}</h6>               
 `;
       console.log(data);
       playlistCard.appendChild(singlePlaylist);
