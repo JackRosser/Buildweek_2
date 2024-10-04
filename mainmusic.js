@@ -50,14 +50,12 @@ const cantautori = [
   "Bruce Springsteen",
   "Paul Simon",
   "Cat Stevens",
-  "John Lennon",
+  "John Lennon"
 ];
 
 const albumCard = document.getElementById("albumCard");
 const albumCardGeneration = function () {
-  const cantanteLink = `https://striveschool-api.herokuapp.com/api/deezer/search?q=${
-    cantautoriPerLink[Math.floor(Math.random() * cantautoriPerLink.length)]
-  }`;
+  const cantanteLink = `https://striveschool-api.herokuapp.com/api/deezer/search?q=${cantautoriPerLink[Math.floor(Math.random() * cantautoriPerLink.length)]}`;
   fetch(cantanteLink)
     .then((response) => {
       if (response.ok) {
@@ -91,9 +89,7 @@ const albumCardGeneration = function () {
 const sec1 = document.getElementById("sec_1");
 const playlistCard = document.getElementById("playlitsBox");
 const playlistCardGeneration = function () {
-  const cantanteLink = `https://striveschool-api.herokuapp.com/api/deezer/search?q=${
-    cantautoriPerLink[Math.floor(Math.random() * cantautoriPerLink.length)]
-  }`;
+  const cantanteLink = `https://striveschool-api.herokuapp.com/api/deezer/search?q=${cantautoriPerLink[Math.floor(Math.random() * cantautoriPerLink.length)]}`;
   fetch(cantanteLink)
     .then((response) => {
       if (response.ok) {
@@ -106,8 +102,7 @@ const playlistCardGeneration = function () {
       const randomIndex = Math.floor(Math.random() * data.data.length);
       const playlitsBox = document.getElementById("playlitsBox");
       const singlePlaylist = document.createElement("div");
-      singlePlaylist.className =
-        "col-12 col-md-4 d-flex align-items-center p-0 gap-3 my-1";
+      singlePlaylist.className = "col-12 col-md-4 d-flex align-items-center p-0 gap-3 my-1";
       singlePlaylist.innerHTML = `
                  <div id="box-delle-immagini" class="d-flex flex-wrap p-0" style="max-width: 60px">
                     <div class="d-flex">
@@ -130,13 +125,9 @@ const playlistCardGeneration = function () {
     });
 };
 
-const cantautoriPerLink = cantautori.map((item) =>
-  item.replace(/\s+/g, "").toLowerCase()
-);
+const cantautoriPerLink = cantautori.map((item) => item.replace(/\s+/g, "").toLowerCase());
 
-const apiLink = `https://striveschool-api.herokuapp.com/api/deezer/search?q=${
-  cantautoriPerLink[Math.floor(Math.random() * cantautoriPerLink.length)]
-}`;
+const apiLink = `https://striveschool-api.herokuapp.com/api/deezer/search?q=${cantautoriPerLink[Math.floor(Math.random() * cantautoriPerLink.length)]}`;
 
 const searchParam = new URLSearchParams(location.search);
 const albumId = searchParam.get("albumid");
@@ -165,7 +156,7 @@ if (albumId) {
       selectedAlbum.innerHTML = `
         <div class="mainbox w-100 col col-12 col-lg-7 text-white overflow-hidden p-0 Gianmarco">
         
-          <div class="bgmain h-50 position-relative z-0">
+          <div class="bgmain h-70 position-relative z-0 p-2" style="height: 20rem">
 
            <div class="col d-flex gap-2 justify-content-between align-content-center pb-4">
                 <div class="d-flex gap-2">
@@ -192,9 +183,9 @@ if (albumId) {
               </div>
             <div class="row m-0 pb-3 ps-3">
             
-              <div class="col col-lg-3 shadow-lg p-0 ps-1">
-                <img class="w-100" src="${data.cover_medium}" alt="album"  />
-              </div>
+              <div class="col col-lg-3 p-0 ps-1" style="max-width: 200px; max-height: 100px;">
+  <img src="${data.cover_medium}" alt="album" class="w-100"/>
+</div>
               <div class="col col-lg-9" id="albumgian">
                 <p>ALBUM</p>
                 <h2 class="fw-bold">${data.title}</h2>
@@ -208,9 +199,8 @@ if (albumId) {
       mainMusicBox.appendChild(selectedAlbum);
       // GENERAZIONE TABELLA LISTA CANZONI ALBUM
       let container = document.createElement("div");
-      container.className =
-        "container position-absolute containerPlay p-3  w-100";
-      container.style.top = "18rem";
+      container.className = "row position-absolute containerPlay p-3  w-100";
+      container.style.top = "20rem";
       container.style.bottom = "0";
       container.style.overflow = "auto";
       container.innerHTML = `<div class="col d-flex align-items-center gap-2">
@@ -231,9 +221,7 @@ if (albumId) {
       data.tracks.data.forEach((track, i) => {
         const minutes = Math.floor(track.duration / 60);
         const seconds = track.duration % 60;
-        const formattedTime = `${minutes}:${seconds
-          .toString()
-          .padStart(2, "0")}`;
+        const formattedTime = `${minutes}:${seconds.toString().padStart(2, "0")}`;
         let row = document.createElement("div");
         row.className = "row";
         row.innerHTML = `<div class="col col-4 d-flex gap-2">
@@ -372,9 +360,7 @@ if (albumId) {
 
       //prendiamo la fetch delle tracks presente nell'id dell'artista
       //per popolare la lista delle canzoni popolari
-      fetch(
-        `https://striveschool-api.herokuapp.com/api/deezer/artist/${artistId}/top?limit=6`
-      )
+      fetch(`https://striveschool-api.herokuapp.com/api/deezer/artist/${artistId}/top?limit=6`)
         .then((response) => {
           if (response.ok) {
             return response.json();
@@ -423,9 +409,7 @@ if (albumId) {
           tracks.data.forEach((track, i) => {
             const minutes = Math.floor(track.duration / 60);
             const seconds = track.duration % 60;
-            const formattedTime = `${minutes}:${seconds
-              .toString()
-              .padStart(2, "0")}`;
+            const formattedTime = `${minutes}:${seconds.toString().padStart(2, "0")}`;
             const risolt = document.createElement("div");
             risolt.className = "col d-flex flex-row";
             risolt.innerHTML = `
@@ -562,8 +546,7 @@ if (albumId) {
       mainImage.src = data.data[randomCantante].artist.picture_medium;
       mainImage.alt = `${data.data[randomCantante].title_short} picture`;
       let cantanteBox = document.createElement("div");
-      cantanteBox.className =
-        "d-flex flex-column justify-content-between overflow-hidden";
+      cantanteBox.className = "d-flex flex-column justify-content-between overflow-hidden";
       cantanteBox.innerHTML = `
         <h6 id="playAlbum"><a class="nav-link" href="./homepage.html?albumid=${data.data[randomCantante].album.id}">ALBUM</a></h6>
         <h1 class="text-break">${data.data[randomCantante].title}</h1>
