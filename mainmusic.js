@@ -398,6 +398,9 @@ if (albumId) {
                 <a class="nav-link mt-4" href="#">VISUALIZZA ALTRO</a>
                 </div>
                 </div>
+
+
+                
                     `;
           //forEach per ciclare le tracce e generare le col che le contengono
           const tracksList = listMusic.querySelector("#tracks-list");
