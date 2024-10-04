@@ -287,6 +287,15 @@ if (albumId) {
         }
       });
 
+      const volumeControl = document.getElementById("volume");
+      volumeControl.addEventListener("click", function () {
+        audioPlayer.volume = volumeControl.value / 100;
+        volumeControl.addEventListener("input", function () {
+          audioPlayer.volume = this.value / 100;
+          console.log("Volume impostato a:", audioPlayer.volume);
+        });
+      });
+
       container.appendChild(tracksBox);
       mainMusicBox.appendChild(container);
     })
@@ -469,6 +478,15 @@ if (albumId) {
             }
           });
 
+          const volumeControl = document.getElementById("volume");
+          volumeControl.addEventListener("click", function () {
+            audioPlayer.volume = volumeControl.value / 100;
+            volumeControl.addEventListener("input", function () {
+              audioPlayer.volume = this.value / 100;
+              console.log("Volume impostato a:", audioPlayer.volume);
+            });
+          });
+
           tracksList.appendChild(trackContainer);
 
           artistMain.appendChild(listMusic);
@@ -494,6 +512,7 @@ if (albumId) {
       let randomCantante = Math.floor(Math.random() * data.data.length);
 
       const playButton = document.getElementById("next");
+      const volumeControl = document.getElementById("volume");
       audioPreview = data.data[randomCantante].preview;
       const audioPlayer = document.getElementById("audioPlayer");
       document.getElementById("next").addEventListener("click", function () {
@@ -511,6 +530,14 @@ if (albumId) {
           playButtonIcon.classList.remove("bi-pause-circle-fill");
           playButtonIcon.classList.add("bi-play-circle-fill");
         }
+      });
+
+      volumeControl.addEventListener("click", function () {
+        audioPlayer.volume = volumeControl.value / 100;
+        volumeControl.addEventListener("input", function () {
+          audioPlayer.volume = this.value / 100;
+          console.log("Volume impostato a:", audioPlayer.volume);
+        });
       });
 
       let mainImage = document.createElement("img");
