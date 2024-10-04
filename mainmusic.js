@@ -50,7 +50,7 @@ const cantautori = [
   "Bruce Springsteen",
   "Paul Simon",
   "Cat Stevens",
-  "John Lennon"
+  "John Lennon",
 ];
 
 const albumCard = document.getElementById("albumCard");
@@ -420,6 +420,53 @@ if (albumId) {
           `;
 
             trackContainer.appendChild(rowTrack);
+          });
+
+          let currentTrackIndex = 0;
+          const playButton = document.getElementById("next");
+          const nextTrBtn = document.getElementById("nextr");
+          const prevTrBtn = document.getElementById("play");
+          const audioPlayer = document.getElementById("audioPlayer");
+          let audioPreview = tracks.data[currentTrackIndex].preview;
+
+          playButton.addEventListener("click", function () {
+            const playButtonIcon = playButton.querySelector("i");
+            if (audioPlayer.src !== audioPreview) {
+              audioPlayer.src = audioPreview;
+              audioPlayer.load();
+            }
+            if (audioPlayer.paused || audioPlayer.ended) {
+              audioPlayer.play();
+              playButtonIcon.classList.remove("bi-play-circle-fill");
+              playButtonIcon.classList.add("bi-pause-circle-fill");
+            } else {
+              audioPlayer.pause();
+              playButtonIcon.classList.remove("bi-pause-circle-fill");
+              playButtonIcon.classList.add("bi-play-circle-fill");
+            }
+          });
+
+          nextTrBtn.addEventListener("click", function () {
+            audioPreview = tracks.data[currentTrackIndex].preview;
+            audioPlayer.src = audioPreview;
+            audioPlayer.load();
+            audioPlayer.play();
+            currentTrackIndex++;
+            console.log("traccia successiva", currentTrackIndex);
+            if (currentTrackIndex >= tracks.data.length) {
+              currentTrackIndex = 0;
+            }
+          });
+          prevTrBtn.addEventListener("click", function () {
+            audioPreview = tracks.data[currentTrackIndex].preview;
+            audioPlayer.src = audioPreview;
+            audioPlayer.load();
+            audioPlayer.play();
+            currentTrackIndex--;
+            console.log("traccia precedente", currentTrackIndex);
+            if (currentTrackIndex < 0) {
+              currentTrackIndex = tracks.data.length - 1;
+            }
           });
 
           tracksList.appendChild(trackContainer);
