@@ -55,7 +55,9 @@ const cantautori = [
 
 const albumCard = document.getElementById("albumCard");
 const albumCardGeneration = function () {
-  const cantanteLink = `https://striveschool-api.herokuapp.com/api/deezer/search?q=${cantautoriPerLink[Math.floor(Math.random() * cantautoriPerLink.length)]}`;
+  const cantanteLink = `https://striveschool-api.herokuapp.com/api/deezer/search?q=${
+    cantautoriPerLink[Math.floor(Math.random() * cantautoriPerLink.length)]
+  }`;
   fetch(cantanteLink)
     .then((response) => {
       if (response.ok) {
@@ -89,7 +91,9 @@ const albumCardGeneration = function () {
 const sec1 = document.getElementById("sec_1");
 const playlistCard = document.getElementById("playlitsBox");
 const playlistCardGeneration = function () {
-  const cantanteLink = `https://striveschool-api.herokuapp.com/api/deezer/search?q=${cantautoriPerLink[Math.floor(Math.random() * cantautoriPerLink.length)]}`;
+  const cantanteLink = `https://striveschool-api.herokuapp.com/api/deezer/search?q=${
+    cantautoriPerLink[Math.floor(Math.random() * cantautoriPerLink.length)]
+  }`;
   fetch(cantanteLink)
     .then((response) => {
       if (response.ok) {
@@ -129,9 +133,13 @@ const playlistCardGeneration = function () {
     });
 };
 
-const cantautoriPerLink = cantautori.map((item) => item.replace(/\s+/g, "").toLowerCase());
+const cantautoriPerLink = cantautori.map((item) =>
+  item.replace(/\s+/g, "").toLowerCase()
+);
 
-const apiLink = `https://striveschool-api.herokuapp.com/api/deezer/search?q=${cantautoriPerLink[Math.floor(Math.random() * cantautoriPerLink.length)]}`;
+const apiLink = `https://striveschool-api.herokuapp.com/api/deezer/search?q=${
+  cantautoriPerLink[Math.floor(Math.random() * cantautoriPerLink.length)]
+}`;
 
 const searchParam = new URLSearchParams(location.search);
 const albumId = searchParam.get("albumid");
@@ -203,7 +211,8 @@ if (albumId) {
       mainMusicBox.appendChild(selectedAlbum);
       // GENERAZIONE TABELLA LISTA CANZONI ALBUM
       let container = document.createElement("div");
-      container.className = "container position-absolute containerPlay p-3  w-100";
+      container.className =
+        "container position-absolute containerPlay p-3  w-100";
       container.style.top = "18rem";
       container.style.bottom = "0";
       container.style.overflow = "auto";
@@ -225,7 +234,9 @@ if (albumId) {
       data.tracks.data.forEach((track, i) => {
         const minutes = Math.floor(track.duration / 60);
         const seconds = track.duration % 60;
-        const formattedTime = `${minutes}:${seconds.toString().padStart(2, "0")}`;
+        const formattedTime = `${minutes}:${seconds
+          .toString()
+          .padStart(2, "0")}`;
         let row = document.createElement("div");
         row.className = "row";
         row.innerHTML = `<div class="col col-4 d-flex gap-2">
@@ -316,7 +327,9 @@ if (albumId) {
 
       //prendiamo la fetch delle tracks presente nell'id dell'artista
       //per popolare la lista delle canzoni popolari
-      fetch(`https://striveschool-api.herokuapp.com/api/deezer/artist/${artistId}/top?limit=6`)
+      fetch(
+        `https://striveschool-api.herokuapp.com/api/deezer/artist/${artistId}/top?limit=6`
+      )
         .then((response) => {
           if (response.ok) {
             return response.json();
@@ -328,73 +341,74 @@ if (albumId) {
           const listMusic = document.createElement("div");
           listMusic.className = "list-music";
           listMusic.innerHTML = `
-      
-       <button class="btn">
-    <a class="nav-link" href="#"><i class="bi bi-play-circle-fill text-success fa-3x"></i></a>
-  </button>
-  <button class="btn btn-outline-light mx-3 btn-sm text-uppercase fw-bold" role="button" tabindex="0">FOLLOWING</button>
-  <button id="3dots" class="btn fs-6">
-    <i class="bi bi-three-dots text-light"></i>
-  </button>
-  <h5>Popolari</h5>
-  <div id="tracks-list" class="container d-flex flex-row-reverse">
     
-
-      
-      
-      <div class="container">
-      <h5>Brani che ti piacciono</h5>
-      <div class="d-flex align-items-start mt-3">
-        <div>
-          <img src="${data.picture_medium}" class="rounded-circle me-2" alt="avatar" />
-          <i class="bi bi-suit-heart-fill heart-circle ms-2"></i>
-        </div>
-        <div class="mt-2">
-        <strong class="small-text">Hai messo mi piace a 11 Brani</strong>
-        <p class="small">Di Yellostone</p>
-        </div>
-        
-        </div>
-        <a class="nav-link mt-4" href="#">VISUALIZZA ALTRO</a>
-        </div>
-        </div>
-            `;
+     <button class="btn">
+    <a class="nav-link" href="#"><i class="bi bi-play-circle-fill text-success fa-3x"></i></a>
+    </button>
+    <button class="btn btn-outline-light mx-3 btn-sm text-uppercase fw-bold" role="button" tabindex="0">FOLLOWING</button>
+    <button id="3dots" class="btn fs-6">
+    <i class="bi bi-three-dots text-light"></i>
+    </button>
+    <h5>Popolari</h5>
+    <div id="tracks-list" class="container d-flex flex-row-reverse">
+    
+    <div class="container">
+    <div class="row flex-row-reverse justify-content-around" id="risolt">
+    <div class="col-12 col-lg-5">
+    <h5>Brani che ti piacciono</h5>
+    <div class="d-flex align-items-start mt-3">
+      <div>
+        <img src="${data.picture_medium}" class="rounded-circle me-2" alt="avatar" />
+        <i class="bi bi-suit-heart-fill heart-circle ms-2"></i>
+      </div>
+      <div class="mt-2">
+      <strong class="small-text">Hai messo mi piace a 11 Brani</strong>
+      <p class="small">Di Yellostone</p>
+      </div>
+    
+      </div>
+      <a class="nav-link mt-4" href="#">VISUALIZZA ALTRO</a>
+      </div>
+      </div>
+          `;
           //forEach per ciclare le tracce e generare le col che le contengono
-          const tracksList = listMusic.querySelector("#tracks-list");
+          const tracksList = listMusic.querySelector("#risolt");
           const trackContainer = document.createElement("div");
-          trackContainer.className = "col-6";
+          trackContainer.className = "col-12 col-lg-7";
           tracks.data.forEach((track, i) => {
             const minutes = Math.floor(track.duration / 60);
             const seconds = track.duration % 60;
-            const formattedTime = `${minutes}:${seconds.toString().padStart(2, "0")}`;
-            const rowTrack = document.createElement("div");
-            rowTrack.className = "row";
-            rowTrack.innerHTML = `
-           
-        <div class="col col-4 d-flex gap-2 align-items-center">
-          <div class="text-white-50">${i + 1}</div>
-          <div class="d-flex m-2 align-items-center">
-            <img src="${track.album.cover_small}" alt="${track.title}" />
-            <p class="mt-6 mb-1 ms-2">${track.title}</p>
-          </div>
-        </div>
-        <div class="col col-4 d-flex align-items-center justify-content-end text-white-50">
-          <p class="mt-6 mb-1">${track.rank}</p>
-        </div>
-        <div class="col col-3 d-flex align-items-center justify-content-end text-white-50">
-          <p class="mt-6 mb-1">${formattedTime}</p>
-        </div>
-     
+            const formattedTime = `${minutes}:${seconds
+              .toString()
+              .padStart(2, "0")}`;
+            const risolt = document.createElement("div");
+            risolt.className = "col d-flex flex-row";
+            risolt.innerHTML = `
+    
+      <div class="col col-4 col-lg-4 d-flex flex-row gap-2 align-items-center">
+        <p class="text-white-50 m-0">${i + 1}</p>
+        <img src="${track.album.cover_small}" alt="${track.title}" />
+      </div>
+      <div class="col col-lg-8 d-flex flex-row align-items-center">
+       <div class="col d-flex m-2 align-items-center">
+          <p class="mt-6 mb-1 ms-2">${track.title}</p>
+       </div>
+       <div class="col col-7 d-flex gap-5 aling-item-center text-white-50">
+        <p class="mt-6 mb-1">${track.rank}</p>
+        <p class="mt-6 mb-1 d-none d-lg-block ">${formattedTime}</p>
+       </div>
+      
+      </div>
+        `;
 
-          `;
-
-            trackContainer.appendChild(rowTrack);
+            trackContainer.appendChild(risolt);
           });
 
           tracksList.appendChild(trackContainer);
 
           artistMain.appendChild(listMusic);
         })
+
         .catch((err) => {
           console.error("Errore nella seconda fetch:", err);
         });
@@ -437,7 +451,9 @@ if (albumId) {
           audioPlayer.pause();
 
           // Cambia l'icona da "pause" a "play" ma non funziona vedo domani
-          playButton.querySelector("i").classList.remove("bi-pause-circle-fill");
+          playButton
+            .querySelector("i")
+            .classList.remove("bi-pause-circle-fill");
           playButton.querySelector("i").classList.add("bi-play-circle-fill");
         }
       });
@@ -445,7 +461,8 @@ if (albumId) {
       mainImage.src = data.data[randomCantante].artist.picture_medium;
       mainImage.alt = `${data.data[randomCantante].title_short} picture`;
       let cantanteBox = document.createElement("div");
-      cantanteBox.className = "d-flex flex-column justify-content-between overflow-hidden";
+      cantanteBox.className =
+        "d-flex flex-column justify-content-between overflow-hidden";
       cantanteBox.innerHTML = `
         <h6 id="playAlbum"><a class="nav-link" href="./homepage.html?albumid=${data.data[randomCantante].album.id}">ALBUM</a></h6>
         <h1 class="text-break">${data.data[randomCantante].title}</h1>
