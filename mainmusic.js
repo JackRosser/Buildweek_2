@@ -331,7 +331,7 @@ if (albumId) {
       console.log("sono id artist", data);
 
       mainMusicBox.innerHTML = "";
-
+      document.querySelector(".mainmusic").classList.remove("mainmusic");
       const artistMain = document.createElement("div");
       artistMain.className = "col col-lg-9 w-100";
       //creiamo la parte di sopra della pagina con la foto in background
@@ -384,7 +384,7 @@ if (albumId) {
         })
         .then((tracks) => {
           const listMusic = document.createElement("div");
-          listMusic.className = "list-music";
+
           listMusic.innerHTML = `
               
              <button class="btn">
@@ -430,15 +430,15 @@ if (albumId) {
             risolt.className = "col d-flex flex-row";
             risolt.innerHTML = `
     
-      <div class="col col-4 col-lg-4 d-flex flex-row gap-2 align-items-center">
+      <div class="col col-3 col-lg-2 d-flex flex-row gap-2 align-items-center">
         <p class="text-white-50 m-0">${i + 1}</p>
         <img src="${track.album.cover_small}" alt="${track.title}" />
       </div>
-      <div class="col col-lg-8 d-flex flex-row align-items-center">
-       <div class="col d-flex m-2 align-items-center">
+      <div class="col col-9 col-lg-10 d-flex flex-row align-items-center">
+       <div class="col col-5 d-flex m-2 align-items-center">
           <p class="mt-6 mb-1 ms-2">${track.title}</p>
        </div>
-       <div class="col col-7 d-flex gap-5 aling-item-center text-white-50">
+       <div class="col col-7 d-flex gap-5 justify-content-around text-white-50">
         <p class="mt-6 mb-1">${track.rank}</p>
         <p class="mt-6 mb-1 d-none d-lg-block ">${formattedTime}</p>
        </div>
