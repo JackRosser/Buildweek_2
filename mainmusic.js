@@ -566,3 +566,9 @@ if (albumId) {
       console.log("Errore" + err);
     });
 }
+
+const fillTheHeartOfFooter = document.getElementById("heart");
+fillTheHeartOfFooter.addEventListener("click", function () {
+  const heart = fillTheHeartOfFooter.querySelector("i");
+  heart.classList.toggle("text-danger");
+});
