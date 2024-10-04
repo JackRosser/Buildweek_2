@@ -7,3 +7,6 @@
   backdrop-filter: blur(5rem);
   margin-bottom: 50px;
 }
+.shadow-lg {
+  object-fit: contain;
+}
